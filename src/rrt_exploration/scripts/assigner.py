@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #--------Include modules---------------
 from copy import copy
@@ -154,7 +154,3 @@ if __name__ == '__main__':
         node()
     except rospy.ROSInterruptException:
         pass
- 
- 
- 
- 

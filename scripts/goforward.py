@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''
 @Name: 
 @Descripttion: 
@@ -7,7 +8,6 @@
 @LastEditors: JeremyZhao1998
 @LastEditTime: 2020-03-14 04:36:32
 '''
-#!/usr/bin/env python
 
 '''
 Copyright (c) 2015, Mark Silliman
@@ -81,4 +81,3 @@ if __name__ == '__main__':
         GoForward()
     except:
         rospy.loginfo("GoForward node terminated.")
-

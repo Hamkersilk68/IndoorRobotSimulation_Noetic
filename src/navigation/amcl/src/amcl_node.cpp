@@ -130,7 +130,7 @@ class AmclNode
     // Use a child class to get access to tf2::Buffer class inside of tf_
     struct TransformListenerWrapper : public tf::TransformListener
     {
-      inline tf2_ros::Buffer &getBuffer() {return tf2_buffer_;}
+      inline tf2_ros::Buffer &getBuffer() {return *tf2_buffer_ptr_;}
     };
 
     TransformListenerWrapper* tf_;

@@ -1,0 +1,39 @@
+# ROS 编译产物
+devel/
+build/
+logs/
+install/
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# CMake 缓存
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# IDE 配置文件（比如VSCode、Clion）
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 临时文件
+*.log
+*.tmp
+.DS_Store
+
+# docs
+list.md
+list_restore1.md
+list_restore2.md
+list_restore3.md
+list_restore4.md
+list_restore5.md
+list_restore6.md
+
+

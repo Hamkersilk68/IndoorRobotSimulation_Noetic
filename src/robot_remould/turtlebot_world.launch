@@ -1,0 +1,29 @@
+<launch>
+  <!-- Turtlebot3 Waffle World Launch -->
+  <!-- Use env var TURTLEBOT3_GAZEBO_WORLD_FILE if set, otherwise use default square_hall.world -->
+  <arg name="world_file" default="$(optenv TURTLEBOT3_GAZEBO_WORLD_FILE '')"/>
+  <arg name="world_default" default="$(find robot_remould)/../../gazebo_worlds/square_hall.world"/>
+  <arg name="gui" default="true"/>
+  <arg name="model" default="waffle"/>
+  <arg name="x_pos" default="-2.0"/>
+  <arg name="y_pos" default="-0.5"/>
+  <arg name="z_pos" default="0.0"/>
+
+  <!-- Start Gazebo with the specified world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(arg world_file)" if="$(eval world_file != '')"/>
+    <arg name="world_name" value="$(arg world_default)" unless="$(eval world_file != '')"/>
+  </include>
+  
+  <!-- Spawn Turtlebot3 Waffle robot directly -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model turtlebot3_$(arg model) -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+  
+  <!-- Publish robot state (joint transforms) -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+</launch>

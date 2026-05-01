@@ -29,13 +29,12 @@
 #include <ros/console.h>
 #include <hector_geotiff/geotiff_writer.h>
 
-#include <QtGui/QPainter>
-#include <QtGui/QImageWriter>
-#include <QtGui/QApplication>
-#include <QtCore/QFile>
-//#include <QtCore/QDateTime>
-#include <QtCore/QTime>
-#include <QtCore/QTextStream>
+#include <QPainter>
+#include <QImageWriter>
+#include <QApplication>
+#include <QFile>
+#include <QTime>
+#include <QTextStream>
 
 namespace hector_geotiff{
 

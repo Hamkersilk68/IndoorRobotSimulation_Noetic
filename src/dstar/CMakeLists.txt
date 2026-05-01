@@ -1,7 +1,8 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.2)
 project(dstar_global_planner)
 
-ADD_DEFINITIONS(-std=c++0x) # C++ 11 is required
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
@@ -68,9 +69,7 @@ add_library(dstar_global_planner  ${SOURCES_RRT} ${SOURCES})
 
 target_link_libraries(dstar_global_planner ${catkin_LIBRARIES} ${BOOST_LIBRARIES} )
 
-add_dependencies(dstar_global_planner dstar_global_planner_gencfg ${catkin_EXPORTED_TARGETS})
-
-add_dependencies(dstar_global_planner nav_msgs_gencpp)
+add_dependencies(dstar_global_planner ${catkin_EXPORTED_TARGETS})
 
 
 install(TARGETS dstar_global_planner

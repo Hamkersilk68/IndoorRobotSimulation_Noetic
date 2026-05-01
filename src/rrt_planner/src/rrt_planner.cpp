@@ -27,9 +27,7 @@ int mapSize;
 bool* OGM;
 bool* OGM2;
 RRT myRRT;//RRT树结构
-ofstream irrtlog("/home/ljq/irrtlog.txt");
-
-int clock_gettime(clockid_t clk_id, struct timespect *tp);
+ofstream irrtlog("/tmp/irrtlog.txt");
 
 long getCurrentTime()
 {

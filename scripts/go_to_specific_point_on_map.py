@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
 Copyright (c) 2015, Mark Silliman
@@ -82,7 +82,7 @@ if __name__ == '__main__':
 
         # Customize the following values so they are appropriate for your location
         print('Enter the navigation goal:')
-        thisGoal = raw_input()
+        thisGoal = input()
         p = {'room1': (0.582, -0.768), 'room2': (5.17, 10.5), 'room3': (-5.96, 15), 'room4': (-10.4, 3.98), 
              'bookshelf1': (4, 1.58), 'bookshelf2': (6.03, 6.34), 'bookshelf3': (3.06, 13.9), 'bookshelf4': (-2.03, 16), 
              'bookshelf5': (-9.49, 13.1), 'bookshelf6': (-11.5, 7.81), 'bookshelf7': (-8.34, 0.452), 'bookshelf8': (-3.41, -1.41),
@@ -105,4 +105,3 @@ if __name__ == '__main__':
 
     except rospy.ROSInterruptException:
         rospy.loginfo("Ctrl-C caught. Quitting")
-

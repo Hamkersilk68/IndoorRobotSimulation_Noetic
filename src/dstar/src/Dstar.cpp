@@ -4,6 +4,7 @@
 
 #include "dstar_global_planner/Dstar.h"
 #include <stdio.h>
+#include <cmath>
 
 #ifdef USE_OPEN_GL
 #ifdef MACOS

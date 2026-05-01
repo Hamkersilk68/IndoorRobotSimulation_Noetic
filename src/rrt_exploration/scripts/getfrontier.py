@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 
 #--------Include modules---------------
@@ -33,17 +33,17 @@ def getfrontier(mapData):
 	
        	o=cv2.inRange(img,0,1)
 	edges = cv2.Canny(img,0,255)
-	im2, contours, hierarchy = cv2.findContours(o,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+	contours, hierarchy = cv2.findContours(o,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 	cv2.drawContours(o, contours, -1, (255,255,255), 5)
 	o=cv2.bitwise_not(o) 
 	res = cv2.bitwise_and(o,edges)
 	#------------------------------
 
 	frontier=copy(res)
-	im2, contours, hierarchy = cv2.findContours(frontier,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+	contours, hierarchy = cv2.findContours(frontier,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 	cv2.drawContours(frontier, contours, -1, (255,255,255), 2)
 
-	im2, contours, hierarchy = cv2.findContours(frontier,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+	contours, hierarchy = cv2.findContours(frontier,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 	all_pts=[]
 	if len(contours)>0:
 		upto=len(contours)-1
@@ -66,5 +66,3 @@ def getfrontier(mapData):
 					all_pts=pt
 	
 	return all_pts
-
-

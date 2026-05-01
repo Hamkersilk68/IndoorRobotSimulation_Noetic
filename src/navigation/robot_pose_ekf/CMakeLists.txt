@@ -2,11 +2,13 @@ cmake_minimum_required(VERSION 2.8.3)
 project(robot_pose_ekf)
 
 # bfl (Bayesian Filtering Library) is a third party package that uses pkg-config
-find_package(PkgConfig)
-pkg_check_modules(BFL REQUIRED orocos-bfl)
+find_package(PkgConfig QUIET)
+pkg_check_modules(BFL QUIET orocos-bfl)
 
-include_directories(${BFL_INCLUDE_DIRS})
-link_directories(${BFL_LIBRARY_DIRS})
+if(BFL_FOUND)
+  include_directories(${BFL_INCLUDE_DIRS})
+  link_directories(${BFL_LIBRARY_DIRS})
+endif()
 
 find_package(catkin REQUIRED
         COMPONENTS

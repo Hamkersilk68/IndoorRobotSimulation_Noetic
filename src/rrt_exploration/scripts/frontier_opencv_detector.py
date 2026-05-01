@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 
 #--------Include modules---------------
@@ -85,7 +85,3 @@ if __name__ == '__main__':
         node()
     except rospy.ROSInterruptException:
         pass
- 
- 
- 
- 

@@ -14,7 +14,7 @@ find_package(catkin REQUIRED
         )
 
 
-find_package(Boost REQUIRED COMPONENTS signals)
+find_package(Boost)
 
 catkin_package(
     CATKIN_DEPENDS

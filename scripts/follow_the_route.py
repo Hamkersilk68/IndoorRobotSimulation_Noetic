@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
 Copyright (c) 2016, Nadya Ampilogova
@@ -15,6 +15,7 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 '''
 
+import os
 import rospy
 import yaml
 from take_photo import TakePhoto
@@ -22,9 +23,11 @@ from go_to_specific_point_on_map import GoToPose
 
 if __name__ == '__main__':
 
-    # Read information from yaml file
-    with open("route.yaml", 'r') as stream:
-        dataMap = yaml.load(stream)
+    # Read information from yaml file (resolve path relative to this script's location)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    route_path = os.path.join(script_dir, "route.yaml")
+    with open(route_path, 'r') as stream:
+        dataMap = yaml.safe_load(stream)
 
     try:
         # Initialize

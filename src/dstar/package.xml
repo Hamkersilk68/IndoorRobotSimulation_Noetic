@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="2">
   <name>dstar_global_planner</name>
   <version>0.0.1</version>
   <description>The dstar_global_planner package</description>
@@ -20,16 +20,16 @@
   <build_depend>costmap_2d</build_depend>
   <build_depend>nav_core</build_depend>
 
-  <run_depend>nav_core</run_depend>
-  <run_depend>costmap_2d</run_depend>
-  <run_depend>pluginlib</run_depend>
-  <run_depend>cmake_modules</run_depend>
-  <run_depend>geometry_msgs</run_depend>
-  <run_depend>nav_msgs</run_depend>
-  <run_depend>roscpp</run_depend>
-  <run_depend>rospy</run_depend>
-  <run_depend>std_msgs</run_depend>
-  <run_depend>tf</run_depend>
+  <exec_depend>nav_core</exec_depend>
+  <exec_depend>costmap_2d</exec_depend>
+  <exec_depend>pluginlib</exec_depend>
+  <exec_depend>cmake_modules</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>tf</exec_depend>
 
 
   <export>

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
 Copyright (c) 2015, Mark Silliman
@@ -24,7 +24,7 @@ import actionlib
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import Pose, PoseWithCovarianceStamped, Point, Quaternion, Twist
 import json
-import urllib2
+import urllib.request
 import time #for sleep()
 import roslib
 from kobuki_msgs.msg import PowerSystemEvent, AutoDockingAction, AutoDockingGoal, SensorState #for kobuki base power and auto docking
@@ -99,7 +99,7 @@ class turtlebot_coffee():
 	goal.target_pose.header.stamp = rospy.Time.now()
 	
 	#call the server and "pop" the next pending customer's pose (if one is pending) from the stack
-	data = json.load(urllib2.urlopen(self.server_public_dns + "/turtlebot-server/coffee_queue.php?pop"))
+	data = json.load(urllib.request.urlopen(self.server_public_dns + "/turtlebot-server/coffee_queue.php?pop"))
 	if(data["status"] == "pending"): #someone is pending coffee!  Oh ya... let's get moving
 		#If we're at the charging station back up 0.2 meters to avoid collision with dock
 		self.DoWeNeedToBackUpFromChargingStation()
@@ -119,7 +119,7 @@ class turtlebot_coffee():
         	        self.move_base.cancel_goal()
         	        rospy.loginfo("The base failed to reach the desired pose")
 			#tell the server that this pose failed (so it won't try it again)
-			data = json.load(urllib2.urlopen(self.server_public_dns + "/turtlebot-server/coffee_queue.php?update&id=" + data["id"] + "&status=failed"))
+			data = json.load(urllib.request.urlopen(self.server_public_dns + "/turtlebot-server/coffee_queue.php?update&id=" + data["id"] + "&status=failed"))
     		else:
 			# We made it!
 			state = self.move_base.get_state()
@@ -129,7 +129,7 @@ class turtlebot_coffee():
 			    self.cannot_move_until_b0_is_pressed = True
 			    self.count_no_one_needs_coffee_in_a_row = 0 #reset to 0
 			    #tell the server that the pose was completed
-			    data = json.load(urllib2.urlopen(self.server_public_dns + "/turtlebot-server/coffee_queue.php?update&id=" + data["id"] + "&status=complete"))
+			    data = json.load(urllib.request.urlopen(self.server_public_dns + "/turtlebot-server/coffee_queue.php?update&id=" + data["id"] + "&status=complete"))
 
 	else: #no one needs coffee :(		
 		self.count_no_one_needs_coffee_in_a_row = self.count_no_one_needs_coffee_in_a_row + 1 #increment so we know how many times in a row no one needed coffee
@@ -300,4 +300,3 @@ if __name__ == '__main__':
 
     except rospy.ROSInterruptException:
         rospy.loginfo("Exception thrown")
-

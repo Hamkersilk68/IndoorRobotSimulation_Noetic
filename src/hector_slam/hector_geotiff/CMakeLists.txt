@@ -1,30 +1,27 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(hector_geotiff)
 
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS hector_map_tools hector_nav_msgs nav_msgs pluginlib roscpp std_msgs)
 
-## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(Qt5Widgets QUIET)
+if(NOT Qt5Widgets_FOUND)
+  find_package(Qt4 4.6 COMPONENTS QtCore QtGui REQUIRED)
+  set(QT_LIBRARIES ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
+  include(${QT_USE_FILE})
+else()
+  set(QT_LIBRARIES Qt5::Widgets Qt5::Core Qt5::Gui)
+endif()
 
-find_package(Qt4 4.6 COMPONENTS QtCore QtGui REQUIRED)
-
-# Find Eigen3 (from http://wiki.ros.org/jade/Migration)
+# Find Eigen3
 find_package(Eigen3)
 if(NOT EIGEN3_FOUND)
-  # Fallback to cmake_modules
   find_package(cmake_modules REQUIRED)
   find_package(Eigen REQUIRED)
   set(EIGEN3_INCLUDE_DIRS ${EIGEN_INCLUDE_DIRS})
-  set(EIGEN3_LIBRARIES ${EIGEN_LIBRARIES})  # Not strictly necessary as Eigen is head only
-  # Possibly map additional variables to the EIGEN3_ prefix.
+  set(EIGEN3_LIBRARIES ${EIGEN_LIBRARIES})
 else()
   set(EIGEN3_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIR})
 endif()
-
-include(${QT_USE_FILE})
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
